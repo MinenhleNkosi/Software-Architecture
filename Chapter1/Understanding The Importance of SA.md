@@ -1,4 +1,6 @@
-# Chapter 1 Mastery Guide: Understanding The Importance Of Software Architecture
+# Chapter 1 Mastery Guide: 
+
+## Understanding The Importance Of Software Architecture
 
 **Chapter Summary**
 
@@ -32,7 +34,7 @@ This chapter provides the **Mental Framework** and **Vocabulary** for all subseq
 
 **The answer**: Through disciplined requirements engineering, appropriate process model selection, and architecture decisions that explicitly address non-functional requirements.
 
-# CONCEPT BREAKDOWN WITH VISUAL DIAGRAMS
+## CONCEPT BREAKDOWN WITH VISUAL DIAGRAMS
 
 **Concept A: What Is Software Architecture?**
 
@@ -104,16 +106,20 @@ graph TD
 **Diagram: Constraints On Great Solutions**
 
 ```mermaid
-                    GREAT SOLUTION
-                         |
-        +----------------+----------------+
-        |                |                |
-   User Needs       Timeline          Budget
-        |                |                |
-        +-------+--------+--------+-------+
-                |                 |
-              Quality      Future Evolution
-              
-Each constraint pulls in different directions.
-Architecture balances these forces
+graph TD
+    A[GREAT SOLUTION]
+    A --> B[User Needs]
+    A --> C[Timeline]
+    A --> D[Budget]
+    A --> E[Quality]
+    A --> F[Future Evolution]
+    
+    style A fill:#4CAF50,stroke:#333,stroke-width:4px,color:#fff
+    style B fill:#2196F3,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#2196F3,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#2196F3,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#FF9800,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#FF9800,stroke:#333,stroke-width:2px,color:#fff
 ```
+
+**Note**: Each constraint pulls in different directions. Architecture balances these forces.
