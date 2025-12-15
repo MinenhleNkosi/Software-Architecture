@@ -72,6 +72,7 @@ Evolution Timeline:
 
 **Visual Diagram: Software Development Lifecycle**
 
+```mermaid
 graph TD
     A[Define Customer Requirements] --> B[Design Solution Architecture]
     B --> C[Implement Design]
@@ -84,6 +85,7 @@ graph TD
     style B fill:#ff9,stroke:#333,stroke-width:4px
     
     B --> H[Architecture Decisions:<br/>- Component structure<br/>- Technology choices<br/>- NFR strategies]
+```
 
 **Legend**:
 * Yellow box: Architect's primary responsibility
@@ -101,6 +103,7 @@ graph TD
 
 **Diagram: Constraints On Great Solutions**
 
+```mermaid
                     GREAT SOLUTION
                          |
         +----------------+----------------+
@@ -113,3 +116,4 @@ graph TD
               
 Each constraint pulls in different directions.
 Architecture balances these forces
+```
