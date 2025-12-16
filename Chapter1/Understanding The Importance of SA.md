@@ -161,31 +161,13 @@ graph LR
 
 **Detailed Comparison Table:**
 
-| Model	        | When to Use       | Strengths	   | Weaknesses	  |Architect's Role |
-|-----------------------------------------------------------------------------------|
-| **Waterfall**	| Highly regulated  | Clear        | Late         | Design complete |
-|               | domains (medical  | milestones,  | feedback,    | architecture    |
-|               | devices), fixed   | extensive    | inflexible   | upfront         |
-|               | requirements	    | documentation| to change	  |                 |
-|-----------------------------------------------------------------------------------|
-|**Incremental**| Medium-sized      | Early user   | Can lack     | Design for      |
-|               | projects with     | feedback,    | long-term    | extensibility   |
-|               | evolving          | risk         | vision       |                 |
-|               | requirements	    | reduction	   |              |	                |
-|-----------------------------------------------------------------------------------|
-| **Agile (XP,  | Dynamic markets,  | Fast         | Can neglect  | Continuous      |
-| Scrum)**      | frequent changes	| feedback,    | architecture | architecture    |
-|               |                   | customer     |              | refinement      |
-|               |                   | collaboration|              | 	            |
-|-----------------------------------------------------------------------------------|
-| **Lean**	    | Startups, MVP     | Waste        | May sacrifice| Identify minimum|
-|               | development	    | elimination, | quality for  | viable          |
-|               |                   | fast delivery| speed        | architecture    |
-|-----------------------------------------------------------------------------------|
-| **SAFe**	    | Large enterprises | Scales agile,| Heavy process| Enterprise-level|
-|               | (100+ developers) | maintains    | overhead     | architecture    |
-|               |                   | alignment    |              | governance      |
-|-----------------------------------------------------------------------------------|
+| Model | When to Use | Strengths | Weaknesses | Architect's Role |
+|-------|-------------|-----------|------------|------------------|
+| **Waterfall** | Highly regulated domains (medical devices), fixed requirements | Clear milestones, extensive documentation | Late feedback, inflexible to change | Design complete architecture upfront |
+| **Incremental** | Medium-sized projects with evolving requirements | Early user feedback, risk reduction | Can lack long-term vision | Design for extensibility |
+| **Agile (XP, Scrum)** | Dynamic markets, frequent changes | Fast feedback, customer collaboration | Can neglect architecture | Continuous architecture refinement |
+| **Lean** | Startups, MVP development | Waste elimination, fast delivery | May sacrifice quality for speed | Identify minimum viable architecture |
+| **SAFe** | Large enterprises (100+ developers) | Scales agile, maintains alignment | Heavy process overhead | Enterprise-level architecture governance |
 
 **Visual: Waterfall vs Agile Feedback Loops**
 
