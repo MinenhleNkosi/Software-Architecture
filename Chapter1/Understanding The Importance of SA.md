@@ -123,3 +123,140 @@ graph TD
 ```
 
 **Note**: Each constraint pulls in different directions. Architecture balances these forces.
+
+
+**Concept B: Software Development Process Models**
+
+**ELI5 Explanation**
+
+Different teams work in different ways. Some plan everything before starting (like building a bridge), others build a little, test it, then build more (like a chef tasting while cooking). Process models are recipes for how teams work together.
+
+**Technical Definition**
+
+A software development process model defines:
+* **Phases**: Stages of work (requirements, design, coding, testing)
+* **Sequencing**: Order and overlap of phases
+* **Roles**: Who does what (developer, tester, product owner)
+* **Artifacts**: Outputs (requirements doc, code, tests)
+* **Feedback loops**: How learning from later phases informs earlier ones
+
+**Comparison Diagram: Process Models**
+
+```mermaid
+graph LR
+    subgraph Waterfall
+    W1[Requirements] --> W2[Design] --> W3[Implementation] --> W4[Testing] --> W5[Deployment]
+    end
+    
+    subgraph Incremental
+    I1[Increment 1:<br/>Req→Design→Code→Test] --> I2[Increment 2:<br/>Req→Design→Code→Test] --> I3[Increment N]
+    end
+    
+    subgraph Agile/Scrum
+    S1[Sprint 1<br/>2-4 weeks] --> S2[Sprint 2] --> S3[Sprint N]
+    S1 -.Feedback.-> S2
+    S2 -.Feedback.-> S3
+    end
+```
+
+**Detailed Comparison Table:**
+
+| Model	        | When to Use       | Strengths	   | Weaknesses	  |Architect's Role |
+|-----------------------------------------------------------------------------------|
+| **Waterfall**	| Highly regulated  | Clear        | Late         | Design complete |
+|               | domains (medical  | milestones,  | feedback,    | architecture    |
+|               | devices), fixed   | extensive    | inflexible   | upfront         |
+|               | requirements	    | documentation| to change	  |                 |
+|-----------------------------------------------------------------------------------|
+|**Incremental**| Medium-sized      | Early user   | Can lack     | Design for      |
+|               | projects with     | feedback,    | long-term    | extensibility   |
+|               | evolving          | risk         | vision       |                 |
+|               | requirements	    | reduction	   |              |	                |
+|-----------------------------------------------------------------------------------|
+| **Agile (XP,  | Dynamic markets,  | Fast         | Can neglect  | Continuous      |
+| Scrum)**      | frequent changes	| feedback,    | architecture | architecture    |
+|               |                   | customer     |              | refinement      |
+|               |                   | collaboration|              | 	            |
+|-----------------------------------------------------------------------------------|
+| **Lean**	    | Startups, MVP     | Waste        | May sacrifice| Identify minimum|
+|               | development	    | elimination, | quality for  | viable          |
+|               |                   | fast delivery| speed        | architecture    |
+|-----------------------------------------------------------------------------------|
+| **SAFe**	    | Large enterprises | Scales agile,| Heavy process| Enterprise-level|
+|               | (100+ developers) | maintains    | overhead     | architecture    |
+|               |                   | alignment    |              | governance      |
+|-----------------------------------------------------------------------------------|
+
+**Visual: Waterfall vs Agile Feedback Loops**
+
+```mermaid
+graph TB
+    subgraph Waterfall["WATERFALL (Sequential)"]
+        W1[Requirements] --> W2[Design]
+        W2 --> W3[Code]
+        W3 --> W4[Test]
+        W4 --> W5[Deploy]
+        W5 --> W6[❌ Feedback comes too late!]
+        
+        style W6 fill:#f44,stroke:#333,stroke-width:2px,color:#fff
+    end
+    
+    subgraph Agile["AGILE (Iterative)"]
+        A1[Sprint 1:<br/>Req → Code → Test] --> A2[✓ Feedback]
+        A2 --> A3[Sprint 2:<br/>Adjust & Build]
+        A3 --> A4[✓ Feedback]
+        A4 -.Continuous Improvement.-> A1
+        
+        style A2 fill:#4CAF50,stroke:#333,stroke-width:2px,color:#fff
+        style A4 fill:#4CAF50,stroke:#333,stroke-width:2px,color:#fff
+    end
+```
+
+**Deep Dive: The Agile Manifesto (2001)**
+
+The book emphasizes this critical text:
+
+```
+We value:
+- Individuals and interactions over processes and tools
+- Working software over comprehensive documentation
+- Customer collaboration over contract negotiation
+- Responding to change over following a plan
+
+While there is value in the items on the right,
+we value the items on the left more.
+```
+
+**Architect's Interpretation**:
+* "Working software" doesn't mean no architecture — it means architecture that **Enables** working software.
+* "Responding to change" requires architecture that **Supports** change (loose coupling, clear boundaries).
+* "Individuals and interactions" means architects must **Communicate** decisions, not dictate from ivory towers.
+
+**Scrum Process Diagram (from the book)**
+
+```mermaid
+flowchart LR
+    PB[(Product<br/>Backlog)] --> SPM[Sprint Planning<br/>Meeting]
+    SPM --> SB[(Sprint<br/>Backlog)]
+    SB --> Sprint[Sprint<br/>2-4 weeks]
+    Sprint --> Daily[Daily<br/>Meetings]
+    Daily -.-> Sprint
+    Sprint --> Review[Sprint Review<br/>Meeting]
+    Review --> Delivered[Software<br/>Delivered]
+    Delivered -.Feedback.-> PB
+    
+    PO[Product Owner] -.Prioritizes.-> PB
+    SM[Scrum Master] -.Facilitates.-> Sprint
+    Dev[Development Team] -.Implements.-> Sprint
+```
+
+**Key Roles**:
+* **Product Owner**: Prioritizes features, represents user needs
+* **Scrum Master**: Removes impediments, facilitates process
+* **Development Team**: Implements features (includes architect!)
+
+**Architect's Responsibilities in Scrum**:
+* Participate in **Sprint Planning** to identify architecture work
+* Define **Definition of Done** including architecture criteria
+* Conduct **Architecture Reviews** during Sprint Review
+* Maintain **Architecture Backlog** of technical debt
