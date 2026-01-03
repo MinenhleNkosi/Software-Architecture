@@ -2,11 +2,11 @@
 
 ## Understanding The Importance Of Software Architecture
 
-**Chapter Summary**
+## Chapter Summary
 
 Chapter 1 establishes the foundational understanding of what software architecture truly means in modern enterprise application development. The chapter positions the software architect as the bridge between business requirements and technical implementation, emphasizing that great solutions require not just modern tools (.NET 8, C# 12, Azure) but disciplined processes for gathering requirements, choosing development methodologies, and making architecture decisions that balance user needs, timelines, budget, quality, and future evolution. The chapter argues that sustainable software cannot exist without great software architecture, and introduces the real-world case study (WWTravelClub) that will demonstrate these principles throughout the book.
 
-**Measurable Learning Objectives**
+## Measurable Learning Objectives
 
 By the end of this chapter, you will be able to:
 
@@ -36,7 +36,7 @@ This chapter provides the **Mental Framework** and **Vocabulary** for all subseq
 
 ## CONCEPT BREAKDOWN WITH VISUAL DIAGRAMS
 
-**Concept A: What Is Software Architecture?**
+## Concept A: What Is Software Architecture?
 
 **ELI5 Explaination:**
 
@@ -125,7 +125,7 @@ graph TD
 **Note**: Each constraint pulls in different directions. Architecture balances these forces.
 
 
-**Concept B: Software Development Process Models**
+## Concept B: Software Development Process Models
 
 **ELI5 Explanation**
 
@@ -242,3 +242,107 @@ flowchart LR
 * Define **Definition of Done** including architecture criteria
 * Conduct **Architecture Reviews** during Sprint Review
 * Maintain **Architecture Backlog** of technical debt
+
+
+## Concept C: Requirements Engineering Process
+
+**ELI5 Explanation**
+
+Before building a treehouse, you ask: "How many kids will use it? How high should it be? Does it need a roof?" Requirements engineering is asking the right questions so you build what people actually need.
+
+**Technical Definition**
+
+Requirements engineering is a structured process to:
+1. **Elicit**: Discover what users need (interviews, observation, questionnaires)
+2. **Analyze**: Understand and model requirements (prototypes, use cases)
+3. **Specify**: Document requirements clearly (functional and non-functional)
+4. **Validate**: Confirm requirements with stakeholders (reviews, acceptance criteria)
+
+Process Flow Diagram (from book Figure 1.7)
+
+```mermaid
+graph TD
+    RE[Requirements Engineering]
+    RE --> RD[Requirements Development]
+    RE --> RM[Requirements Management]
+    
+    RD --> E[Elicitation:<br/>Discover user needs]
+    E --> A[Analysis:<br/>Model & understand]
+    A --> S[Specification:<br/>Document clearly]
+    S --> V[Validation:<br/>Confirm with stakeholders]
+    
+    RM --> Track[Track changes]
+    RM --> Prioritize[Prioritize features]
+    RM --> Trace[Trace to implementation]
+    
+    style RD fill:#9f9
+    style RM fill:#99f
+```
+
+**Elicitation Techniques (with examples)**
+
+| Technique | When to Use | Example | Architect's Focus |
+|-----------|-------------|---------|------------------|
+| **Imagination/Brainstorming** | You're domain expert | "As a travel booking system architect, I know users need multi-currency support" | Identify architectural patterns from experience |
+| **Questionnaires** | Large user base, quantitative data | "How many concurrent users? Which browsers?" | Gather scalability/compatibility requirements |
+| **Interviews** | Complex domain, qualitative insights | "Walk me through your order approval process" | Discover business rules and workflows |
+| **Observation** | Existing manual process | Shadow a warehouse worker for a day | Identify performance bottlenecks and usability needs |
+| **Prototyping** | Unclear UI/UX requirements | Mockup in Figma/Pencil Project | Validate user interface architecture |
+
+
+**Use Case Diagram Example (from book Figure 1.8)**
+
+```mermaid
+graph TD
+    CU[Common User]
+    Admin[Administrator]
+    
+    CU --> UC1[UC_001:<br/>Register User]
+    CU --> UC2[UC_002:<br/>Search Hotels]
+    Admin --> UC3[UC_003:<br/>Manage Hotels]
+    
+    Admin -.is a.-> CU
+    
+    style UC1 fill:#ffe
+    style UC2 fill:#ffe
+    style UC3 fill:#ffe
+```
+
+**Use Case Specification Template:**
+```
+UC_002: Search Hotels
+Actors: Common User
+Preconditions: User is authenticated
+Main Flow:
+  1. User enters destination and dates
+  2. System queries hotel database
+  3. System displays results sorted by price
+  4. User selects hotel to view details
+Postconditions: Hotel details displayed
+Non-functional: Response time < 2 seconds
+```
+
+#### Requirements Specification Best Practices
+
+**Functional Requirement Format:**
+```
+GOOD: "The system shall allow a common user to register themselves."
+BAD:  "A common user registers themselves." (present tense, unclear obligation)
+```
+
+**User Story Format** (Agile):
+```
+As a <user type>,
+I want <feature>,
+So that <business value>
+
+Example:
+As a hotel manager,
+I want to update room availability in real-time,
+So that overbooking is prevented and revenue is maximized.
+
+Acceptance Criteria:
+- Changes visible to all users within 5 seconds
+- Concurrent updates handled without data loss
+- Audit log of all changes maintained
+```
