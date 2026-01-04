@@ -346,3 +346,127 @@ Acceptance Criteria:
 - Concurrent updates handled without data loss
 - Audit log of all changes maintained
 ```
+
+
+## Concept D: Non-Functional Requirements (NFRs)
+
+#### ELI5 Explanation
+
+Functional requirements are "what" the system does (book a hotel). Non-functional requirements are "how well" it does it (books the hotel in under 2 seconds, even when 1000 people are booking at once, and keeps your credit card safe).
+
+#### Technical Definition
+
+Non-functional requirements (NFRs) specify quality attributes:
+* **Scalability**: Handle growing load (users, data, transactions)
+* **Performance**: Response time, throughput, resource usage
+* **Robustness/Reliability**: Uptime, fault tolerance, recovery
+* **Security**: Confidentiality, integrity, authentication, authorization
+* **Maintainability**: Code quality, documentation, testability
+* **Usability**: User experience, accessibility, learnability
+
+#### Why NFRs Matter to Architects
+Functional requirements drive **Feature Development**. NFRs drive **Architectural Decisions**:
+
+| NFR         | Architectural Impact                              | Example Decision                                   |
+|-------------|---------------------------------------------------|----------------------------------------------------|
+| Scalability | Choose stateless services, horizontal scaling     | Use Azure App Service with autoscaling             |
+| Performance | Caching strategy, async processing                | Implement Redis distributed cache                  |
+| Robustness  | Redundancy, circuit breakers                      | Deploy across multiple Azure regions               |
+| Security    | Authentication/authorization, encryption          | Use Azure AD B2C, TLS 1.3                          |
+|                                                                                                                      |
+
+**NFR Specification Example (from book)**
+```
+Non-functional Requirement: Performance
+ID: NFR-001
+Description: Any web page of this software shall respond in at least 2 seconds,
+             even when 1,000 users are accessing it concurrently.
+Measurement: Load test with 1,000 concurrent users; 95th percentile < 2s
+Priority: High
+Architectural Implications:
+  - Implement output caching for static content
+  - Use async/await for I/O operations
+  - Deploy to Azure App Service with autoscaling (min 3 instances)
+  - Database connection pooling configured
+```
+
+**Diagram: NFRs Influence Architecture**
+
+```mermaid
+graph TD
+    NFR[Non-Functional<br/>Requirements]
+    NFR --> Scale[Scalability:<br/>1000+ concurrent users]
+    NFR --> Perf[Performance:<br/>2s response time]
+    NFR --> Sec[Security:<br/>PCI-DSS compliance]
+    
+    Scale --> A1[Stateless services]
+    Scale --> A2[Horizontal scaling]
+    Scale --> A3[Load balancer]
+    
+    Perf --> A4[Caching layer]
+    Perf --> A5[Async processing]
+    Perf --> A6[CDN for static assets]
+    
+    Sec --> A7[Azure AD authentication]
+    Sec --> A8[Encrypted data at rest]
+    Sec --> A9[API rate limiting]
+    
+    style NFR fill:#f99
+    style A1 fill:#9f9
+    style A2 fill:#9f9
+    style A3 fill:#9f9
+    style A4 fill:#9f9
+    style A5 fill:#9f9
+    style A6 fill:#9f9
+    style A7 fill:#9f9
+    style A8 fill:#9f9
+    style A9 fill:#9f9
+```
+
+## Concept E: Design Thinking & Design Sprint
+
+#### ELI5 Explanation
+
+**Design Thinking**: Spend time with users to understand their problems before building solutions. Like a doctor diagnosing before prescribing.
+**Design Sprint**: A 5-day race to prototype and test an idea. Like speed dating for product ideas—quickly learn what works.
+
+**Design Thinking Process**:
+
+```mermaid
+graph LR
+    E[1. Empathize:<br/>Field research<br/>User interviews] --> D[2. Define:<br/>Identify needs<br/>Problem statement]
+    D --> I[3. Ideate:<br/>Brainstorm solutions<br/>Divergent thinking]
+    I --> P[4. Prototype:<br/>Build mockups<br/>Low-fidelity MVP]
+    P --> T[5. Test:<br/>User feedback<br/>Iterate]
+    T -.Learn.-> E
+    
+    style E fill:#fcc
+    style D fill:#fcf
+    style I fill:#cff
+    style P fill:#cfc
+    style T fill:#ffc
+```
+
+**Architect's Role in Design Thinking**:
+* **Empathize**: Understand technical constraints users face
+* **Define**: Translate user needs into architectural requirements
+* **Ideate**: Propose technical solutions (cloud vs on-prem, monolith vs microservices)
+* **Prototype**: Build architecture proof-of-concept
+* **Test**: Validate non-functional requirements (performance, scalability)
+
+#### Design Sprint Week (from book)
+
+| MON | TUE | WED | THU | FRI |
+|-----|-----|-----|-----|-----|
+| Identify target & map challenge | Sketch solutions | Decide best solution | Build prototype | Test with customers & learn |
+| **Output:** Goal statement | **Output:** Ideas sketches | **Output:** Storyboard & plan | **Output:** Working prototype | **Output:** Validated learnings |
+
+**Example: WWTravelClub Hotel Search Feature**
+
+| Day | Activity | Architect's Contribution |
+|-----|----------|--------------------------|
+| Mon | Map user journey for hotel search | Identify integration points (payment, inventory, reviews) |
+| Tue | Sketch solutions (filters, map view, list view) | Propose API contracts, data models |
+| Wed | Decide on combined map + list view | Design caching strategy for performance |
+| Thu | Build clickable prototype in Figma | Create API mockups with realistic response times |
+| Fri | Test with 5 travel agents | Validate: Can handle 100 searches/min? Response < 2s? |
